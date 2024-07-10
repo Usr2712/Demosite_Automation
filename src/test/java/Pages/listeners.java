@@ -15,9 +15,7 @@ CommonMethods commonMethods = new CommonMethods();
     @Override
     public void onTestStart(ITestResult result) {
         System.out.println("Pass");
-        System.out.println("Pass");
-        System.out.println("Pass");
-        System.out.println("Pass");
+
 
     }
 
