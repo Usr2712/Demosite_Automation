@@ -16,6 +16,7 @@ CommonMethods commonMethods = new CommonMethods();
     public void onTestStart(ITestResult result) {
         System.out.println("Pass");
         System.out.println("Pass");
+        System.out.println("Pass");
 
     }
 
