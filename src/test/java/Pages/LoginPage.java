@@ -1,6 +1,7 @@
 package Pages;
 
 
+import Factory.DataBaseConnection;
 import ReaderFiles.ConfigReader;
 import ReaderFiles.ExcelReader;
 import org.openqa.selenium.WebDriver;
@@ -13,17 +14,12 @@ import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.Properties;
 
-public class LoginPage {
+public class LoginPage extends DataBaseConnection {
 
     private WebDriver driver;
 
     ExcelReader testdata = new ExcelReader();
 
-    static String username = "root";
-
-    String dbUrl = "jdbc:mysql://localhost:3306/logindetails?autoReconnect=true&useSSL=false";
-    //Database Password
-    static String password = "Usr@2712";
 
     //Query to Execute
     static String query = "Select *from usercreds;";
@@ -89,24 +85,20 @@ public class LoginPage {
 
 
         //Create Connection to DB
-        Connection con = DriverManager.getConnection(dbUrl,username,password);
 
         //Create Statement Object
-        Statement stmt = con.createStatement();
+        Statement stmt = connection.createStatement();
 
         // Execute the SQL Query. Store results in ResultSet
         ResultSet rs= stmt.executeQuery(query);
 
         // While Loop to iterate through all data and print results
         while (rs.next()){
-            String User = rs.getString(1);
-            String Pass = rs.getString(2);
 
             UserNameinDB = rs.getString(1);
             PasswordinDb = rs.getString(2);
         }
         // closing DB Connection
-        con.close();
     }
 
 

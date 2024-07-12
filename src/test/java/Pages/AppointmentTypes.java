@@ -1,6 +1,7 @@
 package Pages;
 
 
+import Factory.DataBaseConnection;
 import Utilities.CommonMethods;
 import Utilities.Constants;
 import org.openqa.selenium.By;
@@ -14,16 +15,19 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import stepdefinitions.AppointmentCategorypageSteps;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Month;
 import java.util.List;
 
 
 @Listeners(listeners.class)
-public class AppointmentTypes {
+public class AppointmentTypes extends DataBaseConnection {
 
     Constants constants = new Constants();
     CommonMethods commonMethods = new CommonMethods();
-
+    static String query = "SELECT * FROM logindetails.appointmentdetails;";
 
     private WebDriver driver;
 
@@ -184,6 +188,27 @@ public class AppointmentTypes {
    constants.CommentInHistory=LastDataCommentInHistory.getText();
 
    Assert.assertEquals(constants.CommentProvidedDuringBooking,constants.CommentInHistory);
+
+    }
+
+    public  void VerifydetailsWithDB() throws SQLException {
+
+        Statement stmt = connection.createStatement();
+
+        // Execute the SQL Query. Store results in ResultSet
+        ResultSet rs= stmt.executeQuery(query);
+
+        // While Loop to iterate through all data and print results
+        while (rs.next()){
+            String Facility = rs.getString(1);
+            String Healthcare_Program = rs.getString(2);
+            String Comment = rs.getString(3);
+
+            System.out.println(Facility);
+            System.out.println(Healthcare_Program);
+            System.out.println(Comment);
+
+        }
 
     }
 }

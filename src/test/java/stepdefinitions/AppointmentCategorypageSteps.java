@@ -3,6 +3,8 @@ package stepdefinitions;
 import Pages.AppointmentTypes;
 import io.cucumber.java.en.And;
 
+import java.sql.SQLException;
+
 import static Factory.DriverFactory.driver;
 
 public class AppointmentCategorypageSteps {
@@ -41,8 +43,9 @@ AppointmentTypes appointmentTypes=new AppointmentTypes(driver);
 
 
     @And("verify Comment in history is matching with comment provided")
-    public void verifyCommentInHistoryIsMatchingWithCommentProvided() {
+    public void verifyCommentInHistoryIsMatchingWithCommentProvided() throws SQLException {
 appointmentTypes.validateComment();
+appointmentTypes.VerifydetailsWithDB();
 
     }
 

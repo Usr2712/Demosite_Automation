@@ -1,6 +1,8 @@
 package stepdefinitions;
 
+import com.aventstack.extentreports.ExtentReports;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -10,10 +12,17 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import com.aventstack.extentreports.ExtentTest;
+import org.openqa.selenium.WebDriver;
 
 import static Factory.DriverFactory.driver;
 
 public class Hooks   {
+
+
+    protected ExtentReports extent;
+    protected ExtentTest test;
+
 
       /*  @After(order = 1)
         public void takeScraenshotOnFailure(Scenario scenario) {
@@ -56,7 +65,7 @@ public class Hooks   {
     public void teardown(){
 
         System.out.println("End");
-       driver.quit();
+     //  driver.quit();
     }
 
 
